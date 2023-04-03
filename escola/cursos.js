@@ -17,7 +17,7 @@ var cursos = [
         "icone": "https://raw.githubusercontent.com/VINICIUSNUNES137/lion-school_front/main/img/rds.svg",
         "carga": "1200"
     }, {
-        "nome": "001 - Técnico em Desenvolvimento de Sistemas",
+        "nome": "001 - Téc  nico em Desenvolvimento de Sistemas",
         "sigla": "DS",
         "icone": "https://raw.githubusercontent.com/VINICIUSNUNES137/lion-school_front/main/img/ds.svg",
         "carga": "1200",

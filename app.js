@@ -46,10 +46,10 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
 
   if (siglaCurso == undefined && statusAluno == undefined && anoConclusao == undefined) {
     if (alunos) {
-      response.json(alunos);
-      response.status(200);
+      dadosAluno = alunos
+      statusCode = 200
     } else {
-      response.status(500)
+      statusCode = 200
     }
   }
   else if (siglaCurso != undefined) {
@@ -83,8 +83,8 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
 
       }
     }
-    response.status(statusCode)
-    response.json(dadosAluno)
+    // response.status(statusCode)
+    // response.json(dadosAluno)
   } else if (statusAluno != undefined) {
     if (statusAluno == '' || statusAluno == undefined || !isNaN(statusAluno)) {
       statusCode = 400
@@ -98,9 +98,9 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
         statusCode = 404
       }
     }
-    response.status(statusCode)
-    response.json(dadosAluno)
-  } else if (siglaCurso == undefined && statusAluno == undefined && anoConclusao != undefined){
+    // response.status(statusCode)
+    // response.json(dadosAluno)
+  } else if (siglaCurso == undefined && statusAluno == undefined && anoConclusao != undefined) {
     if (anoConclusao == '' || anoConclusao == undefined || isNaN(anoConclusao)) {
       statusCode = 400
       dadosAluno.message = "Não é possível processar a requisição, pois a sigla do curso não foi informada ou não é válida."
@@ -117,8 +117,8 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
   else {
     statusCode = 400
     dadosAluno.message = "Não é possível processar a requisição, verifique a URL da requisição."
-    response.status(statusCode)
-    response.json(dadosAluno)
+    // response.status(statusCode)
+    // response.json(dadosAluno)
   }
   response.status(statusCode)
   response.json(dadosAluno)
