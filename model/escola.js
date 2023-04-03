@@ -7,6 +7,26 @@ function getCursos() {
     return cursos
 }
 
+function getCursoID(siglaCurso){
+    let json = {}
+    let status = false
+    cursos.cursos.forEach(function(curso){
+        if(curso.sigla == siglaCurso.toUpperCase()){
+            let statusCase = curso.nome.slice(17)
+            json = {curso: statusCase}
+            status = true
+        }
+    })
+
+    if(status){
+        return json
+    }else{
+        return status
+    }
+}
+
+console.log(getCursoID('ds'));
+
 function getTodosAlunos() {
     alunos = guardaAlunos
     return alunos
@@ -101,11 +121,14 @@ function getDataAlunos(dataConclusao, jsonAlunos) {
 
 }
 
+console.log(getCursoID('rds'));
+
 module.exports = {
     getCursos,
     getTodosAlunos,
     getAluno,
     getAlunosCurso,
     getStatusAluno,
-    getDataAlunos
+    getDataAlunos,
+    getCursoID
 }

@@ -34,6 +34,25 @@ app.get("/v1/lion-school/cursos", cors(), async function (request, response, nex
   }
 })
 
+//criei a mais
+
+app.get("/v1/lion-school/cursos/:nome", cors(), async function (request, response, next) {
+
+  
+  let sigla = request.params.nome
+
+  let cursos = model.getCursoID(sigla)
+
+  if (cursos) {
+    response.json(cursos);
+    response.status(200);
+  } else {
+    response.status(500)
+  }
+})
+
+//criei a mais
+
 app.get("/v1/lion-school/alunos", cors(), async function (request, response, next) {
 
   let siglaCurso = request.query.curso
@@ -83,8 +102,7 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
 
       }
     }
-    // response.status(statusCode)
-    // response.json(dadosAluno)
+
   } else if (statusAluno != undefined) {
     if (statusAluno == '' || statusAluno == undefined || !isNaN(statusAluno)) {
       statusCode = 400
@@ -98,8 +116,7 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
         statusCode = 404
       }
     }
-    // response.status(statusCode)
-    // response.json(dadosAluno)
+ 
   } else if (siglaCurso == undefined && statusAluno == undefined && anoConclusao != undefined) {
     if (anoConclusao == '' || anoConclusao == undefined || isNaN(anoConclusao)) {
       statusCode = 400
@@ -117,17 +134,14 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
   else {
     statusCode = 400
     dadosAluno.message = "Não é possível processar a requisição, verifique a URL da requisição."
-    // response.status(statusCode)
-    // response.json(dadosAluno)
+
   }
   response.status(statusCode)
   response.json(dadosAluno)
 })
 
 app.get("/v1/lion-school/alunos/:matricula", cors(), async function (request, response, next) {
-  // '/:uf' é uma variavel utilizada para passagem de valor
 
-  // siglaEstado recebe o conteudo da variavel :uf
   let matricula = request.params.matricula
   let statusCode
   let dadosAluno = {}
