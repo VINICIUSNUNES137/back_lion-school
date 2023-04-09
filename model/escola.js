@@ -7,20 +7,20 @@ function getCursos() {
     return cursos
 }
 
-function getCursoID(siglaCurso){
+function getCursoID(siglaCurso) {
     let json = {}
     let status = false
-    cursos.cursos.forEach(function(curso){
-        if(curso.sigla == siglaCurso.toUpperCase()){
+    cursos.cursos.forEach(function (curso) {
+        if (curso.sigla == siglaCurso.toUpperCase()) {
             let statusCase = curso.nome.slice(17)
-            json = {curso: statusCase}
+            json = { curso: statusCase }
             status = true
         }
     })
 
-    if(status){
+    if (status) {
         return json
-    }else{
+    } else {
         return status
     }
 }
@@ -70,12 +70,17 @@ function getAlunosCurso(curso) {
 }
 
 
-function getStatusAluno(statusDoAluno) {
+function getStatusAluno(statusDoAluno, jsonAlunos) {
     alunos = guardaAlunos
 
     let json = {}
     let array = []
     let status = false
+
+    if (jsonAlunos != undefined) {
+        alunos = jsonAlunos
+    }
+
 
     let statusCase = statusDoAluno[0].toUpperCase() + statusDoAluno.substring(1).toLowerCase()
 
@@ -94,6 +99,8 @@ function getStatusAluno(statusDoAluno) {
         return status
     }
 }
+
+// console.log(getStatusAluno('cursando', getAlunosCurso('ds')));
 
 function getDataAlunos(dataConclusao, jsonAlunos) {
     alunos = guardaAlunos
@@ -121,7 +128,7 @@ function getDataAlunos(dataConclusao, jsonAlunos) {
 
 }
 
-console.log(getCursoID('rds'));
+// console.log(getCursoID('rds'));
 
 module.exports = {
     getCursos,

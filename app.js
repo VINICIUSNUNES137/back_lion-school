@@ -38,7 +38,7 @@ app.get("/v1/lion-school/cursos", cors(), async function (request, response, nex
 
 app.get("/v1/lion-school/cursos/:nome", cors(), async function (request, response, next) {
 
-  
+
   let sigla = request.params.nome
 
   let cursos = model.getCursoID(sigla)
@@ -90,7 +90,23 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
             statusCode = 404
           }
         }
-      } else {
+      } else if (statusAluno != undefined) {
+        if (statusAluno == '' || statusAluno == undefined || !isNaN(statusAluno)) {
+          statusCode = 400
+          dadosAluno.message = "Não é possível processar a requisição, pois a sigla do curso não foi informada ou não é válida."
+        } else {
+          let cursoAluno = model.getAlunosCurso(siglaCurso)
+          let aluno = model.getStatusAluno(statusAluno, cursoAluno)
+          if (aluno) {
+            statusCode = 200
+            dadosAluno = aluno
+          } else {
+            statusCode = 404
+          }
+        }
+      }
+
+      else {
 
         let aluno = model.getAlunosCurso(siglaCurso)
         if (aluno) {
@@ -116,7 +132,7 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
         statusCode = 404
       }
     }
- 
+
   } else if (siglaCurso == undefined && statusAluno == undefined && anoConclusao != undefined) {
     if (anoConclusao == '' || anoConclusao == undefined || isNaN(anoConclusao)) {
       statusCode = 400
