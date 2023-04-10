@@ -123,10 +123,15 @@ function getDataAlunos(dataConclusao, jsonAlunos) {
     if (status) {
         return json
     } else {
+        status == true
         return status
     }
 
+    // return json
 }
+
+console.log(getDataAlunos('2020', getAlunosCurso('ds')));
+
 
 // console.log(getCursoID('rds'));
 
