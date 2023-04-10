@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 
 const app = express()
 
+const port = process.env.PORT || 8080
 
 app.use((request, response, next) => {
 
@@ -225,6 +226,6 @@ app.get("/v1/lion-school/alunos", cors(), async function (request, response, nex
 
 //indica a porta
 
-app.listen(8080, function () {
+app.listen(port, function () {
   console.log("Servidor aguardando requisições");
 })
