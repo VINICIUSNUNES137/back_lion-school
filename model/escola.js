@@ -124,7 +124,7 @@ function getDataAlunos(dataConclusao, jsonAlunos) {
         return json
     } else {
         status == true
-        return status
+        return json
     }
 
     // return json
