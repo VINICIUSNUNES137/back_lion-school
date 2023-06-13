@@ -42,7 +42,7 @@ function getAluno(matricula) {
         }
     })
     if (status) {
-        return json
+        return json.aluno
     } else {
         return status
     }
